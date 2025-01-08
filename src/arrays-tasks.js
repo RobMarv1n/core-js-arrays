@@ -377,7 +377,7 @@ function generateOdds(len) {
 function getElementByIndices(arr, indices) {
   return indices.reduce((acc, curr) => acc[curr], arr);
 }
-// commit - 22
+
 /**
  * Returns the number of all falsy values in the specified array.
  *
@@ -390,8 +390,8 @@ function getElementByIndices(arr, indices) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  return arr.filter((el) => !el).length;
 }
 
 /**
@@ -404,16 +404,23 @@ function getFalsyValuesCount(/* arr */) {
  *     getIdentityMatrix(1)  => [[1]]
  *
  *     getIdentityMatrix(2) => [[1,0],
- *                             [0,1]]
+ *                              [0,1]]
  *
  *                              [[1,0,0,0,0],
- *                              [0,1,0,0,0],
- *     getIdentityMatrix(5) =>  [0,0,1,0,0],
- *                              [0,0,0,1,0],
- *                              [0,0,0,0,1]]
+ *                               [0,1,0,0,0],
+ *     getIdentityMatrix(5) =>   [0,0,1,0,0],
+ *                               [0,0,0,1,0],
+ *                               [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  return Array(n)
+    .fill(0)
+    .map((el, index) =>
+      Array(n)
+        .fill(1, index, index + 1)
+        .fill(0, index + 1)
+        .fill(0, 0, index)
+    );
 }
 
 /**
@@ -427,8 +434,8 @@ function getIdentityMatrix(/* n */) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+function getIndicesOfOddNumbers(numbers) {
+  return numbers.filter((el) => el % 2 !== 0).map((el) => numbers.indexOf(el));
 }
 
 /**
@@ -441,8 +448,10 @@ function getIndicesOfOddNumbers(/* numbers */) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+function getHexRGBValues(arr) {
+  return arr.map((el) =>
+    '#'.concat(el.toString(16).padStart(6, '0')).toUpperCase()
+  );
 }
 
 /**
@@ -459,8 +468,8 @@ function getHexRGBValues(/* arr */) {
  *   getMaxItems([ 10, 2, 7, 5, 3, -5 ], 3) => [ 10, 7, 5 ]
  *   getMaxItems([ 10, 10, 10, 10 ], 3) => [ 10, 10, 10 ]
  */
-function getMaxItems(/* arr, n */) {
-  throw new Error('Not implemented');
+function getMaxItems(arr, n) {
+  return arr.sort((a, b) => b - a).slice(0, n);
 }
 
 /**
@@ -475,10 +484,10 @@ function getMaxItems(/* arr, n */) {
  *    findCommonElements(['a', 'b', 'c'], ['b', 'c', 'd']) => [ 'b', 'c' ]
  *    findCommonElements([1, 2, 3], ['a', 'b', 'c']) => []
  */
-function findCommonElements(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+function findCommonElements(arr1, arr2) {
+  return arr1.filter((el) => arr2.includes(el));
 }
-
+// 28 - commit
 /**
  * Finds the length of the longest increasing and uninterrupted subsequence of a given array of integers.
  *
